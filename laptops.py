@@ -10,9 +10,7 @@ from PIL import Image
 icon = Image.open("logo1.png")
 slt.set_page_config(page_title = "Laptops - EDA",page_icon=icon,layout="wide")
 #Designing SideBar
-names = ['21A21A6162 - V.Purna Praneeth','21A21A6138 - m.ankanmma 
-rao','21A21A6135 - V.Dinesh','21A21A6141- N.murali','21A21A6129- k.reshi 
-charan','21A21A6124- K.Gopi','21A21A6130- K.Jahnavi','21A21A6161 - V.Divyanjali']
+names = ['21A21A6162 - V.Purna Praneeth','21A21A6138 - m.ankanmma rao','21A21A6135 - V.Dinesh','21A21A6141- N.murali','21A21A6129- k.reshi charan','21A21A6124- K.Gopi','21A21A6130- K.Jahnavi','21A21A6161 - V.Divyanjali']
 slt.sidebar.title("Project Team Members")
 for i in names:
  slt.sidebar.write(i)
@@ -38,17 +36,14 @@ if uploaded_file is not None:
  if slt.checkbox("Display the Data type of each column in Laptop DataFrame"):
    #slt.dataframe(data.dtypes)
    slt.write(pd.DataFrame(data.dtypes,columns=['Data Type']))
- if slt.checkbox("Display the count of non-null values of each column in 
-Dataframe"):
+ if slt.checkbox("Display the count of non-null values of each column in Dataframe"):
    #slt.dataframe(data.count())
    slt.write(pd.DataFrame(data.count(),columns=['count']))
  if slt.checkbox("How many Laptops are in the DataSet?"):
   slt.write(f"{len(data)} Laptops")
- if slt.checkbox("What is the most Expensive Laptop in DataSet? and Give it's 
-Specifications"):
+ if slt.checkbox("What is the most Expensive Laptop in DataSet? and Give it's Specifications"):
    slt.write(data.loc[data['price'].idxmax()])
- if slt.checkbox("What is the Least Expensive Laptop in DataSet? and Give it's 
-Specifications"):
+ if slt.checkbox("What is the Least Expensive Laptop in DataSet? and Give it's Specifications"):
   slt.write(data.loc[data['price'].idxmin()])
  if slt.checkbox("What Would be the Average Price of Laptop?"):
    slt.write(f"₹{int(data['price'].mean())} Rupees")
@@ -59,8 +54,7 @@ Specifications"):
  if slt.checkbox("Classify the Number of laptops Based On Operating System?"):
   slt.write(data.os.value_counts())
  if slt.checkbox("How many laptops have intel i7 processer in Laptop DataSet?"):
-  slt.write(f"{len(data[data['processor'].str.contains('i7')])} Laptops 
-having Inter i7 processor")
+  slt.write(f"{len(data[data['processor'].str.contains('i7')])} Laptops having Inter i7 processor")
  if slt.checkbox("Plot the Correlation between Price and Rating of Laptops"):
    fig,x = plt.subplots()
    plt.scatter(data['price'], data['rating'])
@@ -81,8 +75,7 @@ having Inter i7 processor")
    slt.write("Top 10 High rated laptops between 30k and 40k")
    #slt.write(data1.loc[data1.rating.idxmax()])
    slt.write(data1)
- if slt.checkbox("What is the distribution of laptop prices based on their 
-operating system?"):
+ if slt.checkbox("What is the distribution of laptop prices based on their operating system?"):
    fig, ax = plt.subplots(figsize=(10, 6))
    sns.barplot(x='os', y='price', data=data, ax=ax)
    ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
@@ -90,8 +83,7 @@ operating system?"):
    ax.set_xlabel('Operating System')
    ax.set_ylabel('Price')
    slt.pyplot(fig)
- if slt.checkbox("What is the average price of laptops for each operating 
-system?"):
+ if slt.checkbox("What is the average price of laptops for each operating system?"):
    avg_prices = data.groupby('os')['price'].mean().reset_index()
    slt.write("Average prices of laptops for each operating system:")
    fig, ax = plt.subplots()
@@ -101,15 +93,12 @@ system?"):
    ax.set_title("Average Laptop Prices by Operating System")
    plt.xticks(rotation=45, ha='right')
    slt.pyplot(fig)
- if slt.checkbox("suggest 5 best laptops in the branding of Lenovo based on 
-rating"):
+ if slt.checkbox("suggest 5 best laptops in the branding of Lenovo based on rating"):
      lenovo_data = data[data['name'].str.contains('Lenovo')]
-     top_5_laptops = lenovo_data.sort_values(by='rating', 
-      ascending=False).head(5)
+     top_5_laptops = lenovo_data.sort_values(by='rating', ascending=False).head(5)
      slt.write("Top 5 Lenovo laptops based on rating:")
      slt.write(top_5_laptops[['name', 'processor', 'rating', 'price']])
- if slt.checkbox("Compare the Prices of i3 Processor Laptops of Brands HP and 
-DELL"):
+ if slt.checkbox("Compare the Prices of i3 Processor Laptops of Brands HP and DELL"):
    fig, ax = plt.subplots()
    d = data[data['name'].str.contains('HP') | 
    data['name'].str.contains("DELL")]
@@ -118,9 +107,7 @@ DELL"):
    plt.xticks(rotation=50, ha='right')
    slt.pyplot(fig)
    slt.title("LAPTOP FINDER")
- if slt.checkbox("Confused about which laptop to buy? Just feed in your 
-requirements to our Laptop Finder and you will get best recommendations according 
-to your specifications"):
+ if slt.checkbox("Confused about which laptop to buy? Just feed in your requirements to our Laptop Finder and you will get best recommendations according to your specifications"):
    brand = slt.selectbox("Select Preferred 
    Brand",['Lenovo','HP','DELL','APPLE','RedmiBook','SAMSUNG','MSI','realme 
    Book','ASUS','acer','Infinix'])
@@ -142,8 +129,7 @@ to your specifications"):
    x1 = x1.sort_values(by='rating', ascending=False)
    x1 = x1[['name','os','ram','storage','display_size','price','rating']]
    if len(x1) == 0:
-   slt.write(f"The {brand} Laptops having {processor} are bit Much 
-  Expensive. -- TRY TO INCREASE YOUR BUDGET(₹ price) for the Above Requirments")
+     slt.write(f"The {brand} Laptops having {processor} are bit Much Expensive. -- TRY TO INCREASE YOUR BUDGET(₹ price) for the Above Requirments")
   else:
    slt.write("Here are the Best Matches for the Above Specifications")
    slt.write(x1)
