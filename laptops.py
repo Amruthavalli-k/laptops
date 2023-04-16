@@ -128,6 +128,6 @@ if uploaded_file is not None:
    x1 = x1[['name','os','ram','storage','display_size','price','rating']]
    if len(x1) == 0:
      slt.write(f"The {brand} Laptops having {processor} are bit Much Expensive. -- TRY TO INCREASE YOUR BUDGET(₹ price) for the Above Requirments")
-  else:
+   else:
      slt.write("Here are the Best Matches for the Above Specifications")
      slt.write(x1)
